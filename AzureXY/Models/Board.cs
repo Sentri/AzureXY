@@ -18,6 +18,6 @@ namespace AzureXY.Models
         [StringLength(100, MinimumLength = 10)]
         public string AccessToken { get; set; }
         
-        public List<Drawing> Drawings { get; set; }
+        public virtual List<Drawing> Drawings { get; set; }
     }
 }

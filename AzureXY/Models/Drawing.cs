@@ -16,7 +16,8 @@ namespace AzureXY.Models
 
         public DateTime Created { get; set; }
 
-        public Board Board { get; set; }
+        public int BoardID { get; set; }
+        public virtual Board Board { get; set; }
         
         public Drawing()
         {
