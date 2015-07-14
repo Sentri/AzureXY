@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201507141247069_String.Designer.cs">
       <DependentUpon>201507141247069_String.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507141615559_LastConnected.cs" />
+    <Compile Include="Migrations\201507141615559_LastConnected.Designer.cs">
+      <DependentUpon>201507141615559_LastConnected.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Board.cs" />
@@ -281,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507141247069_String.resx">
       <DependentUpon>201507141247069_String.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507141615559_LastConnected.resx">
+      <DependentUpon>201507141615559_LastConnected.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

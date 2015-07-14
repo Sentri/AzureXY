@@ -18,6 +18,8 @@ namespace AzureXY.Models
         [StringLength(100, MinimumLength = 10)]
         public string AccessToken { get; set; }
 
+        public DateTime LastConnected { get; set; }
+
         public string ApplicationUserID { get; set; }
         public virtual ApplicationUser Owner { get; set; }
 

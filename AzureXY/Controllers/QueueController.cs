@@ -30,6 +30,10 @@ namespace AzureXY.Controllers
             if (board == null)
             {
                 return HttpNotFound();
+            } else
+            {
+                board.LastConnected = DateTime.Now;
+                await db.SaveChangesAsync();
             }
             return View();
         }
