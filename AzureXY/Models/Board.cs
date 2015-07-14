@@ -17,7 +17,10 @@ namespace AzureXY.Models
         [Required]
         [StringLength(100, MinimumLength = 10)]
         public string AccessToken { get; set; }
-        
+
+        public int ApplicationUserID { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
+
         public virtual List<Drawing> Drawings { get; set; }
     }
 }
