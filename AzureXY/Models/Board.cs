@@ -18,9 +18,21 @@ namespace AzureXY.Models
         [StringLength(100, MinimumLength = 10)]
         public string AccessToken { get; set; }
 
-        public int ApplicationUserID { get; set; }
+        public string ApplicationUserID { get; set; }
         public virtual ApplicationUser Owner { get; set; }
 
         public virtual List<Drawing> Drawings { get; set; }
+
+        public Board()
+        {
+
+        }
+
+        public Board(ApplicationUser user)
+        {
+            ApplicationUserID = user.Id;
+            Owner = user;
+        }
+
     }
 }

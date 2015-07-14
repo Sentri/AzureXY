@@ -8,12 +8,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AzureXY.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AzureXY.Controllers
 {
     public class BoardsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        protected UserManager<ApplicationUser> UserManager { get; set; }
+
+        public BoardsController()
+        {
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        }
 
         // GET: Boards
         public async Task<ActionResult> Index()
@@ -39,7 +47,8 @@ namespace AzureXY.Controllers
         // GET: Boards/Create
         public ActionResult Create()
         {
-            return View();
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            return View(new Board(user));
         }
 
         // POST: Boards/Create
