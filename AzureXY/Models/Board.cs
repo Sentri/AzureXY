@@ -23,16 +23,5 @@ namespace AzureXY.Models
 
         public virtual List<Drawing> Drawings { get; set; }
 
-        public Board()
-        {
-
-        }
-
-        public Board(ApplicationUser user)
-        {
-            ApplicationUserID = user.Id;
-            Owner = user;
-        }
-
     }
 }

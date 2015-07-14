@@ -47,8 +47,7 @@ namespace AzureXY.Controllers
         // GET: Boards/Create
         public ActionResult Create()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            return View(new Board(user));
+            return View();
         }
 
         // POST: Boards/Create
@@ -58,6 +57,10 @@ namespace AzureXY.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,Name,AccessToken")] Board board)
         {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            board.ApplicationUserID = user.Id;
+            board.Owner = user;
+
             if (ModelState.IsValid)
             {
                 db.Boards.Add(board);
