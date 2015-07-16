@@ -14,9 +14,9 @@ namespace AzureXY.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Queue/Fetch/5
-        public async Task<ActionResult> Fetch(int? id)
+        public async Task<ActionResult> Fetch(int? id, string token)
         {
-            if (id == null)
+            if (id == null || token == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -24,6 +24,10 @@ namespace AzureXY.Controllers
             if (board == null)
             {
                 return HttpNotFound();
+            }
+            else if (board.AccessToken != token)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             else
             {

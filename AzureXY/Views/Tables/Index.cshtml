@@ -23,6 +23,9 @@
         <th>
             Draw
         </th>
+        <th>
+            Get link
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +43,9 @@
         </td>
         <td>
             @Html.ActionLink("Draw", "Draw", new { id = item.ID })
+        </td>
+        <td>
+            <a href="javascript:void(0);" onclick="prompt('Copy link from below:','/Queue/Fetch/?id=@(item.ID)&token=@(item.AccessToken)')">Get Link</a>
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ID })
