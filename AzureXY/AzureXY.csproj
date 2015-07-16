@@ -273,6 +273,8 @@
     <Content Include="Views\Drawings\Details.cshtml" />
     <Content Include="Views\Drawings\Edit.cshtml" />
     <Content Include="Views\Drawings\Index.cshtml" />
+    <Content Include="Views\Tables\Add.cshtml" />
+    <Content Include="Views\Tables\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -39,7 +39,7 @@ namespace AzureXY.Controllers
         // GET: Drawings/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Drawing());
         }
 
         // POST: Drawings/Create

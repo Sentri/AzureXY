@@ -10,6 +10,7 @@ namespace AzureXY.Models
     {
         public int ID { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Instructions { get; set; }
 
         public string Name { get; set; }
