@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 namespace AzureXY.Models
 {
@@ -51,6 +52,19 @@ namespace AzureXY.Models
                 result.Append(chars[b % (chars.Length)]);
             }
             return result.ToString();
+        }
+
+        public HtmlString RenderStatus()
+        {
+            TimeSpan since = DateTime.Now.Subtract(LastConnected);
+            if (since.TotalSeconds > 20)
+            {
+                return new HtmlString(@"<span class=""offline"">Offline</span>");
+            }
+            else
+            {
+                return new HtmlString(@"<span class=""online"">Online</span>");
+            }
         }
 
     }

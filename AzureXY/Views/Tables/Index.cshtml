@@ -1,33 +1,31 @@
 ﻿@model IEnumerable<AzureXY.Models.Board>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My XY-tables";
 }
 
-<h2>Index</h2>
+<h2>My XY-tables</h2>
 
 <p>
-    @Html.ActionLink("Add New Board", "Add")
+    @Html.ActionLink("Add a new table", "Add")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner.Email)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AccessToken)
         </th>
+        <th>
+            Status
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner.Email)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -35,7 +33,11 @@
             @Html.DisplayFor(modelItem => item.AccessToken)
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @item.RenderStatus()
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+            | @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
 }

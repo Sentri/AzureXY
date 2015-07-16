@@ -29,13 +29,13 @@ namespace AzureXY.Controllers
             return View(await db.Boards.ToListAsync());
         }
 
-        // GET: Drawings/Add
+        // GET: Tables/Add
         public ActionResult Add()
         {
             return View(new Board());
         }
 
-        // POST: Drawings/Add
+        // POST: Tables/Add
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -56,7 +56,38 @@ namespace AzureXY.Controllers
             return View(board);
         }
 
-        // GET: Boards/Delete/5
+        // GET: Tables/Edit/5
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Board board = await db.Boards.FindAsync(id);
+            if (board == null)
+            {
+                return HttpNotFound();
+            }
+            return View(board);
+        }
+
+        // POST: Tables/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Name")] Board board)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(board).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(board);
+        }
+
+        // GET: Tables/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -71,7 +102,7 @@ namespace AzureXY.Controllers
             return View(board);
         }
 
-        // POST: Boards/Delete/5
+        // POST: Tables/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
