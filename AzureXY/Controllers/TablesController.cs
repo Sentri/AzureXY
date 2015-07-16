@@ -56,6 +56,29 @@ namespace AzureXY.Controllers
             return View(board);
         }
 
+        // GET: Tables/Add
+        public async Task<ActionResult> Draw(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Board board = await db.Boards.FindAsync(id);
+            if (board == null)
+            {
+                return HttpNotFound();
+            }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (board.ApplicationUserID != user.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            var vm = new BoardViewModel(board);
+            vm.Drawings = await db.Drawings.ToListAsync();
+
+            return View(vm);
+        }
+
         // GET: Tables/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -67,6 +90,11 @@ namespace AzureXY.Controllers
             if (board == null)
             {
                 return HttpNotFound();
+            }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (board.ApplicationUserID != user.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(board);
         }
@@ -98,6 +126,11 @@ namespace AzureXY.Controllers
             if (board == null)
             {
                 return HttpNotFound();
+            }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (board.ApplicationUserID != user.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(board);
         }

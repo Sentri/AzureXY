@@ -1,0 +1,35 @@
+﻿@model AzureXY.Models.BoardViewModel
+
+@{
+    ViewBag.Title = "Draw";
+}
+
+<h2>Draw with your board @Model.Board.Name </h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Date
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Drawings) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td></td>
+    </tr>
+}
+
+</table>

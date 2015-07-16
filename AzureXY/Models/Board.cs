@@ -68,4 +68,20 @@ namespace AzureXY.Models
         }
 
     }
+
+    public class BoardViewModel
+    {
+
+        public Board Board { get; set; }
+
+        public List<Drawing> Drawings { get; set; }
+
+        public List<DrawingQueue> Queue { get; set; }
+
+        public BoardViewModel(Board board)
+        {
+            Board = board;
+        }
+
+    }
 }
