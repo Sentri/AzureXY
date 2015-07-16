@@ -11,6 +11,7 @@ using AzureXY.Models;
 
 namespace AzureXY.Controllers
 {
+    [Authorize]
     public class DrawingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

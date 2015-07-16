@@ -13,6 +13,7 @@ using System.Web.Mvc;
 namespace AzureXY.Controllers
 {
     // this is the public side
+    [Authorize]
     public class TablesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

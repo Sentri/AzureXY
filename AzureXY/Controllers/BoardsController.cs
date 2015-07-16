@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AzureXY.Controllers
 {
+    [Authorize]
     public class BoardsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
