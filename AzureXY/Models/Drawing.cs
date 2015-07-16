@@ -12,12 +12,9 @@ namespace AzureXY.Models
 
         public string Instructions { get; set; }
 
-        public bool Queued { get; set; }
-
+        public string Name { get; set; }
+        
         public DateTime Created { get; set; }
-
-        public int BoardID { get; set; }
-        public virtual Board Board { get; set; }
         
         public Drawing()
         {

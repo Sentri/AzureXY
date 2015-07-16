@@ -23,7 +23,6 @@ namespace AzureXY.Models
         public string ApplicationUserID { get; set; }
         public virtual ApplicationUser Owner { get; set; }
 
-        public virtual List<Drawing> Drawings { get; set; }
-
+        public virtual List<DrawingQueue> Queue { get; set; }
     }
 }

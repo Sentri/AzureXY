@@ -27,6 +27,7 @@ namespace AzureXY.Models
 
         public DbSet<Drawing> Drawings { get; set; }
         public DbSet<Board> Boards { get; set; }
+        public DbSet<DrawingQueue> DrawingQueues { get; set; }
 
         public static ApplicationDbContext Create()
         {
