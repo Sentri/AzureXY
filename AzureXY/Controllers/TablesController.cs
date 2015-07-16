@@ -26,7 +26,8 @@ namespace AzureXY.Controllers
         // GET: Tables
         public async Task<ActionResult> Index()
         {
-            return View(await db.Boards.ToListAsync());
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            return View(await db.Boards.Where(b => b.ApplicationUserID == user.Id).ToListAsync());
         }
 
         // GET: Tables/Add
@@ -106,6 +107,12 @@ namespace AzureXY.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,Name")] Board board)
         {
+
+            // FIXME: user gets board ownership every time...
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            board.ApplicationUserID = user.Id;
+            board.Owner = user;
+
             if (ModelState.IsValid)
             {
                 db.Entry(board).State = EntityState.Modified;
