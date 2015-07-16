@@ -16,5 +16,18 @@ namespace AzureXY.Models
         
         public int BoardID { get; set; }
         public virtual Board Board { get; set; }
+
+        public DrawingQueue()
+        {
+            QueueTime = DateTime.Now;
+        }
+
+        public DrawingQueue(Board board, int drawing)
+        {
+            DrawingID = drawing;
+            BoardID = board.ID;
+            Board = board;
+            QueueTime = DateTime.Now;
+        }
     }
 }

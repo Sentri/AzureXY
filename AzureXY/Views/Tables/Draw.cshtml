@@ -6,6 +6,36 @@
 
 <h2>Draw with your board "@(Model.Board.Name)" </h2>
 
+<h3>Drawings queued</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Drawing
+        </th>
+        <th>
+            Time
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Queue)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrawingID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QueueTime)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+
+<h3>Available drawings</h3>
+
 <table class="table">
     <tr>
         <th>
@@ -25,7 +55,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Created)
         </td>
-        <td></td>
+        <td>
+            @Html.ActionLink("Draw!", "Push", new { tableid = Model.Board.ID, drawingid = item.ID })
+        </td>
     </tr>
 }
 

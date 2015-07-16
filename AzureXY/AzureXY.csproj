@@ -265,7 +265,6 @@
     <Content Include="Views\Boards\Details.cshtml" />
     <Content Include="Views\Boards\Edit.cshtml" />
     <Content Include="Views\Boards\Index.cshtml" />
-    <Content Include="Views\Queue\Index.cshtml" />
     <Content Include="Views\Tables\Index.cshtml" />
     <Content Include="Views\Queue\Fetch.cshtml" />
     <Content Include="Views\Drawings\Create.cshtml" />

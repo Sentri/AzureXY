@@ -57,7 +57,7 @@ namespace AzureXY.Controllers
             return View(board);
         }
 
-        // GET: Tables/Add
+        // GET: Tables/Draw/5
         public async Task<ActionResult> Draw(int? id)
         {
             if (id == null)
@@ -76,8 +76,33 @@ namespace AzureXY.Controllers
             }
             var vm = new BoardViewModel(board);
             vm.Drawings = await db.Drawings.ToListAsync();
+            vm.Queue = await db.DrawingQueues.Where(q => q.BoardID == board.ID).ToListAsync();
 
             return View(vm);
+        }
+
+        public async Task<ActionResult> Push(int? tableid, int? drawingid)
+        {
+            if (tableid == null || drawingid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Board board = await db.Boards.FindAsync(tableid);
+            Drawing drawing = await db.Drawings.FindAsync(drawingid);
+            if (board == null || drawing == null)
+            {
+                return HttpNotFound();
+            }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (board.ApplicationUserID != user.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            var queue = new DrawingQueue(board, drawing.ID);
+            db.DrawingQueues.Add(queue);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Draw", new { id = board.ID });
         }
 
         // GET: Tables/Edit/5
