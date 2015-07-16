@@ -13,12 +13,6 @@ namespace AzureXY.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Queue
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // GET: Queue/Fetch/5
         public async Task<ActionResult> Fetch(int? id)
         {
@@ -30,12 +24,31 @@ namespace AzureXY.Controllers
             if (board == null)
             {
                 return HttpNotFound();
-            } else
+            }
+            else
             {
                 board.LastConnected = DateTime.Now;
                 await db.SaveChangesAsync();
             }
-            return View();
+            if (board.Queue == null || board.Queue.Count < 1)
+            {
+                return View("Nope");
+            }
+            else
+            {
+                var queue = board.Queue.OrderBy(q => q.QueueTime).First();
+                Drawing drawing = await db.Drawings.FindAsync(queue.DrawingID);
+                if (drawing == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    db.DrawingQueues.Remove(queue);
+                    await db.SaveChangesAsync();
+                }
+                return View(drawing);
+            }
         }
     }
 }

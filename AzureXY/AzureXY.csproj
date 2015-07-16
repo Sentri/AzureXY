@@ -276,6 +276,7 @@
     <Content Include="Views\Tables\Delete.cshtml" />
     <Content Include="Views\Tables\Edit.cshtml" />
     <Content Include="Views\Tables\Draw.cshtml" />
+    <Content Include="Views\Queue\Nope.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
