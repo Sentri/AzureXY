@@ -65,6 +65,7 @@ function Editor(element) {
     this.lines = [];
     this.currentLine = 0;
     this.penMode = "DRAW";
+    this.image = null;
     this.locateButtons();
     this.registerButtons();
     this.loadFromText();
@@ -77,12 +78,14 @@ Editor.prototype = {
         this.buttonErase = $('.toolbox-button-erase[data-target="' + this.target + '"]');
         this.buttonNewline = $('.toolbox-button-newline[data-target="' + this.target + '"]');
         this.buttonWrite = $('.toolbox-button-write[data-target="' + this.target + '"]');
+        this.buttonImage = $('.toolbox-button-image[data-target="' + this.target + '"]');
     },
     "registerButtons": function () {
         this.buttonDraw.on("touchstart mousedown", this.actionDraw.bind(this));
         this.buttonErase.on("touchstart mousedown", this.actionErase.bind(this));
         this.buttonNewline.on("touchstart mousedown", this.actionNewline.bind(this));
         this.buttonWrite.on("touchstart mousedown", this.actionWrite.bind(this));
+        this.buttonImage.on("touchstart mousedown", this.actionImage.bind(this));
         this.canvas.on("touchend mouseup", this.actionTap.bind(this));
         this.canvas.on("touchstart", function (e) {
             this.lastStartEvent = e;
@@ -93,11 +96,25 @@ Editor.prototype = {
         }.bind(this));
     },
     "updateCanvas": function () {
-        console.log(this);
         var ctx = this.canvas[0].getContext("2d");
         ctx.rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         ctx.fillStyle = "white";
         ctx.fill();
+        if (this.image != null) {
+            var iw = this.image.width;
+            var ih = this.image.height;
+            var ratio = iw / ih;
+            var scaler;
+            if (ratio > (CANVAS_WIDTH / CANVAS_HEIGHT)) {
+                scaler = CANVAS_WIDTH / iw;
+            } else {
+                scaler = CANVAS_HEIGHT / ih;
+            }
+            ctx.drawImage(this.image, 0, 0, iw * scaler, ih * scaler);
+            ctx.rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+            ctx.fill();
+        }
         for (var k in this.lines) {
             ctx.beginPath();
             for (var i = 0; i < this.lines[k].length; i++) {
@@ -224,12 +241,25 @@ Editor.prototype = {
         instructions += "E\r\n";
         target.val(instructions);
     },
+    "actionImage": function () {
+        var def = this.image == null ? "" : this.image.src;
+        var location = window.prompt("Please enter a URL for an image:", def);
+        if (location == "") {
+            this.image = null;
+        } else {
+            var img = new Image();
+            img.src = location;
+            this.image = img;
+            img.addEventListener("load", this.requestUpdate.bind(this), false);
+        }
+    },
     "loadFromText": function (text) {
         var text = $("#" + this.target).val();
         if (text && text.length > 0) {
             this.lines = helperReadLines(text);
         };
-    }
+    },
+    
 };
 
 $(function () {
