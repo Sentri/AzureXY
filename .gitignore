@@ -5,6 +5,8 @@
 *.suo
 *.user
 *.sln.docstates
+*.pubxml
+*AppSecrets.config
 
 # Build results
 [Dd]ebug/
