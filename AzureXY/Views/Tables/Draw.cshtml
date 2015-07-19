@@ -8,57 +8,63 @@
 
 <h3>Drawings queued</h3>
 
-<table class="table">
-    <tr>
-        <th>
-            Drawing
-        </th>
-        <th>
-            Time
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Queue)
-    {
+<div class="table-responsive">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DrawingID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QueueTime)
-            </td>
-            <td></td>
+            <th>
+                Drawing
+            </th>
+            <th>
+                Time
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.Queue)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DrawingID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QueueTime)
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
+</div>
+
 
 <h3>Available drawings</h3>
 
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Date
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                Drawing
+            </th>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model.Drawings) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.ActionLink("Draw!", "Push", new { tableid = Model.Board.ID, drawingid = item.ID })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model.Drawings)
+        {
+            <tr>
+                <td>
+                    <div class="toolbox-thumbnail">@Html.DisplayFor(modelItem => item.Instructions)</div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Draw!", "Push", new { tableid = Model.Board.ID, drawingid = item.ID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

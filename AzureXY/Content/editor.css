@@ -21,3 +21,13 @@ body div.toolbox-editor:after {
   padding-top: 88.88%;
   display: block;
   content: ''; }
+
+body div.toolbox-thumbnail svg {
+  height: auto;
+  max-width: 100%; }
+
+body table tr td div.toolbox-thumbnail {
+  max-width: 240px; }
+  body table tr td div.toolbox-thumbnail svg {
+    height: auto;
+    max-width: 100%; }

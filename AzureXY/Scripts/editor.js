@@ -70,7 +70,7 @@ function Editor(element) {
     this.registerButtons();
     this.loadFromText();
     this.requestUpdate();
-};
+}
 
 Editor.prototype = {
     "locateButtons": function () {
@@ -263,8 +263,43 @@ Editor.prototype = {
     
 };
 
+function SVGCreator(element) {
+    this.instructions = $(element).html();
+    this.element = $(element).empty();
+    this.lines = helperReadLines(this.instructions);
+    this.svg = null;
+    this.createSVG();
+}
+
+SVGCreator.prototype = {
+    "createSVG": function () {
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", ""+CANVAS_WIDTH);
+        svg.setAttribute("height", ""+CANVAS_HEIGHT);
+        svg.setAttribute("viewBox", "0 0 "+CANVAS_WIDTH+" "+CANVAS_HEIGHT);
+
+        for (var k in this.lines) {
+            var polyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+            polyline.setAttribute("fill", "none");
+            polyline.setAttribute("stroke", "black");
+            var points = "";
+            for (var i in this.lines[k]) {
+                var point = this.lines[k][i];
+                points += point.x + "," + point.y + " ";
+            }
+            polyline.setAttribute("points", points);
+            svg.appendChild(polyline);
+        }
+
+        this.element.append(svg);
+    },
+};
+
 $(function () {
     $("canvas.toolbox-canvas").each(function (i, element) {
         var e = new Editor(element);
+    });
+    $("div.toolbox-thumbnail").each(function (i, element) {
+        var e = new SVGCreator(element);
     });
 })

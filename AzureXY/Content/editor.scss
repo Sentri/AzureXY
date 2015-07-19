@@ -28,4 +28,19 @@
         display: block;
         content: '';
     }
+    div.toolbox-thumbnail {
+        svg {
+            height: auto;
+            max-width: 100%;
+        }
+    }
+    table tr td {
+        div.toolbox-thumbnail {
+            max-width: 240px;
+            svg {
+                height: auto;
+                max-width: 100%;
+            }
+        }
+    }
 }
