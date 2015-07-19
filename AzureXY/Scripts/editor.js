@@ -135,7 +135,7 @@ Editor.prototype = {
     "flipPoint": function (point) {
         // flips point counterclockwise 90 degrees
         var xb = point.y;
-        var yb = CANVAS_HEIGHT - point.x;
+        var yb = CANVAS_WIDTH - point.x;
         return { "x": xb, "y": yb };
     },
     "padPoint": function (point) {
