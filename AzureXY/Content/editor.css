@@ -1,4 +1,7 @@
-﻿body div.toolbox-editor {
+﻿body div.toolbox-label button {
+  margin-bottom: 8px; }
+
+body div.toolbox-editor {
   width: 100%;
   max-width: 720px;
   display: inline-block;

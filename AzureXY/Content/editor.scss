@@ -1,4 +1,9 @@
 ﻿body {
+    div.toolbox-label {
+        button {
+            margin-bottom: 8px;
+        }
+    }
     div.toolbox-editor {
         width: 100%;
         max-width: 720px;

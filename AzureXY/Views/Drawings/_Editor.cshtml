@@ -1,12 +1,10 @@
-﻿<div class="control-label col-md-2">
-    <label>Toolbox</label>
-    <hr />
-    <a class="btn btn-primary toolbox-button-newline" data-target="@(ViewData["container"])">New line</a>
+﻿<div class="control-label col-md-2 toolbox-label">
+    <label>Toolbox</label><br />
+    <button type="button" class="btn btn-primary toolbox-button-newline" data-target="@(ViewData["container"])">New line</button>
     <div class="btn-group" role="group">
         <button type="button" class="btn btn-default toolbox-button-draw" data-target="@(ViewData["container"])">Draw</button>
         <button type="button" class="btn btn-default toolbox-button-erase" data-target="@(ViewData["container"])">Erase</button>
     </div>
-    <hr />
 </div>
 <div class="col-md-10">
     <div class="toolbox-editor">
@@ -14,5 +12,6 @@
             <canvas id="toolbox-canvas" class="toolbox-canvas" data-target="@(ViewData["container"])"></canvas>
         </div>
     </div>
-    <a class="btn btn-success">Write instructions</a>
+    <br />
+    <a class="btn btn-success toolbox-button-write" data-target="@(ViewData["container"])">Write instructions</a>
 </div>
