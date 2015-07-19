@@ -238,6 +238,7 @@ Editor.prototype = {
             }
             instructions += "U\r\n";
         }
+        instructions += "M010010\r\n";
         instructions += "E\r\n";
         target.val(instructions);
     },
