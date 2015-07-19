@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using AzureXY.Models;
+using System.Web.Configuration;
 
 namespace AzureXY
 {
@@ -46,9 +47,9 @@ namespace AzureXY
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: WebConfigurationManager.AppSettings["MyMicrosoftAppId"],
+                clientSecret: WebConfigurationManager.AppSettings["MyMicrosoftAppSecret"]);
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
