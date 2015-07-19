@@ -24,10 +24,13 @@ body div.toolbox-editor:after {
 
 body div.toolbox-thumbnail svg {
   height: auto;
-  max-width: 100%; }
+  max-width: 100%;
+  max-height: 100%; }
 
 body table tr td div.toolbox-thumbnail {
-  max-width: 240px; }
+  max-width: 240px;
+  max-height: 213px; }
   body table tr td div.toolbox-thumbnail svg {
     height: auto;
-    max-width: 100%; }
+    max-width: 100%;
+    max-height: 100%; }

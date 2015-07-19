@@ -32,14 +32,17 @@
         svg {
             height: auto;
             max-width: 100%;
+            max-height: 100%;
         }
     }
     table tr td {
         div.toolbox-thumbnail {
             max-width: 240px;
+            max-height: 213px;
             svg {
                 height: auto;
                 max-width: 100%;
+                max-height: 100%;
             }
         }
     }
