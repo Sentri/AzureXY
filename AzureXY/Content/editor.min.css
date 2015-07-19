@@ -1,0 +1,1 @@
+﻿body div.toolbox-editor{width:100%;max-width:720px;display:inline-block;position:relative}body div.toolbox-editor div.toolbox-canvas-wrap{position:absolute;top:0;bottom:0;right:0;left:0;border:1px solid #888}body div.toolbox-editor div.toolbox-canvas-wrap canvas.toolbox-canvas{width:100%;height:100%}body div.toolbox-editor:after{padding-top:88.88%;display:block;content:''}

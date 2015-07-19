@@ -1,0 +1,18 @@
+﻿<div class="control-label col-md-2">
+    <label>Toolbox</label>
+    <hr />
+    <a class="btn btn-primary toolbox-button-newline" data-target="@(ViewData["container"])">New line</a>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default toolbox-button-draw" data-target="@(ViewData["container"])">Draw</button>
+        <button type="button" class="btn btn-default toolbox-button-erase" data-target="@(ViewData["container"])">Erase</button>
+    </div>
+    <hr />
+</div>
+<div class="col-md-10">
+    <div class="toolbox-editor">
+        <div class="toolbox-canvas-wrap">
+            <canvas id="toolbox-canvas" class="toolbox-canvas" data-target="@(ViewData["container"])"></canvas>
+        </div>
+    </div>
+    <a class="btn btn-success">Write instructions</a>
+</div>

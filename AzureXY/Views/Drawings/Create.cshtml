@@ -13,7 +13,13 @@
     <div class="form-horizontal">
         <h4>Drawing</h4>
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Partial("_Editor", new ViewDataDictionary { { "container", "Instructions" } } )
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Instructions, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -21,7 +27,7 @@
                 @Html.ValidationMessageFor(model => model.Instructions, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

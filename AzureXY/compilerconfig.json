@@ -1,0 +1,12 @@
+﻿[
+  {
+    "outputFile": "Content/editor.css",
+    "inputFile": "Content/editor.scss",
+    "minify": {
+      "enabled": true
+    },
+    "includeInProject": true,
+    "sourceMap": false,
+    "options": {}
+  }
+]
