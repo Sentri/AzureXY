@@ -9,6 +9,56 @@ function lineLenght(point1, point2) {
     return Math.sqrt(xs + ys);
 }
 
+function parsePoint(line) {
+    var px = parseInt(line.substring(1, 4), 10);
+    var py = parseInt(line.substring(4, 7), 10);
+    return { "x": CANVAS_WIDTH - py, "y": px };
+}
+
+function helperReadLines(text) {
+    // emulate xytable and return a list of lines
+    var mode = 0;
+    var penDown = false;
+    var point = null;
+    var textLines = text.replace("\r", "").split("\n");
+    var instructions = [];
+    var current = null;
+
+    for (var k in textLines) {
+        var line = textLines[k];
+        var start = line.substring(0, 1);
+        if (mode == 0) {
+            if (line == "XYB10") {
+                mode = 1;
+            }
+        } else {
+            switch (start) {
+                case "U":
+                    penDown = false;
+                    instructions.push(current);
+                    current = null;
+                    break;
+                case "D":
+                    penDown = true;
+                    current = [point];
+                    break;
+                case "M":
+                    point = parsePoint(line);
+                    if (penDown) {
+                        current.push(point);
+                    }
+                    break;
+                case "E":
+                    mode = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    return instructions;
+}
+
 function Editor(element) {
     this.canvas = $(element);
     this.target = this.canvas.attr('data-target');
@@ -17,6 +67,7 @@ function Editor(element) {
     this.penMode = "DRAW";
     this.locateButtons();
     this.registerButtons();
+    this.loadFromText();
     this.requestUpdate();
 };
 
@@ -85,7 +136,7 @@ Editor.prototype = {
         // flips point counterclockwise 90 degrees
         var xb = point.y;
         var yb = CANVAS_HEIGHT - point.x;
-        return { "x": xb, "y": xb };
+        return { "x": xb, "y": yb };
     },
     "padPoint": function (point) {
         var xi, yi, xs, ys;
@@ -173,6 +224,12 @@ Editor.prototype = {
         instructions += "E\r\n";
         target.val(instructions);
     },
+    "loadFromText": function (text) {
+        var text = $("#" + this.target).val();
+        if (text && text.length > 0) {
+            this.lines = helperReadLines(text);
+        };
+    }
 };
 
 $(function () {

@@ -16,7 +16,7 @@ namespace AzureXY.Models
         public string Name { get; set; }
         
         public DateTime Created { get; set; }
-        
+
         public Drawing()
         {
             Created = DateTime.Now;
