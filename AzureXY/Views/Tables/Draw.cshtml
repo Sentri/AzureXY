@@ -6,7 +6,9 @@
 
 <h2>Draw with your board "@(Model.Board.Name)" </h2>
 
-<h3>Drawings queued</h3>
+<hr />
+
+<h3>Queue</h3>
 
 <div class="table-responsive">
     <table class="table">
@@ -36,8 +38,13 @@
     </table>
 </div>
 
+<hr />
 
 <h3>Available drawings</h3>
+
+<p>
+    @Html.ActionLink("Manage drawings", "Index", "Drawings", new { }, new { @class = "btn btn-primary" })
+</p>
 
 <div class="table-responsive">
     <table class="table">
@@ -61,7 +68,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Draw!", "Push", new { tableid = Model.Board.ID, drawingid = item.ID })
+                    @Html.ActionLink("Draw!", "Push", new { tableid = Model.Board.ID, drawingid = item.ID }, new { @class = "btn btn-success" })
                 </td>
             </tr>
         }

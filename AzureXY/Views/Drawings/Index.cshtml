@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<AzureXY.Models.Drawing>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage drawings";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
+
+<hr />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
 <div class="table-responsive">
     <table class="table">

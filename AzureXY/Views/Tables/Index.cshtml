@@ -4,10 +4,12 @@
     ViewBag.Title = "My XY-tables";
 }
 
-<h2>My XY-tables</h2>
+<h2>@ViewBag.Title</h2>
+
+<hr />
 
 <p>
-    @Html.ActionLink("Add a new table", "Add")
+    @Html.ActionLink("Add a new table", "Add", new { },  new { @class = "btn btn-primary" })
 </p>
 <div class="table-responsive">
     <table class="table">
@@ -44,10 +46,10 @@
                     @item.RenderStatus()
                 </td>
                 <td>
-                    @Html.ActionLink("Draw", "Draw", new { id = item.ID })
+                    @Html.ActionLink("Draw »", "Draw", new { id = item.ID }, new { @class = "btn btn-primary" })
                 </td>
                 <td>
-                    <a href="javascript:void(0);" onclick="prompt('Copy link from below:','/Queue/Fetch/?id=@(item.ID)&token=@(item.AccessToken)')">Get Link</a>
+                    <a href="javascript:void(0);" class="btn btn-default" onclick="prompt('Copy link from below:','/Queue/Fetch/?id=@(item.ID)&token=@(item.AccessToken)')">Get Link</a>
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID })
