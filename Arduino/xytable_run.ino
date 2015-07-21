@@ -10,10 +10,13 @@
 // WIFI SSID and password
 char ssid[] = "Sentri S5 WiFi";
 char pass[] = "dznv3884";
+
 // Server information
 char server[] = "azurexy.azurewebsites.net";
-char getLine[] = "GET /Queue/Fetch/?id=2&token=ZZy9tA4oVUmT9zzH HTTP/1.1";
 char hostLine[] = "Host: azurexy.azurewebsites.net";
+
+// Replace this URL from your Board management page
+char getLine[] = "GET /Queue/Fetch/?id=2&token=ZZy9tA4oVUmT9zzH HTTP/1.1";
 /**********************
  * END OF CONFIG
  **********************/
