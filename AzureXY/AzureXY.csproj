@@ -210,6 +210,8 @@
     <Content Include="Content\editor.min.css">
       <DependentUpon>editor.css</DependentUpon>
     </Content>
+    <Content Include="Content\img\arduino.jpg" />
+    <Content Include="Content\img\plotter.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

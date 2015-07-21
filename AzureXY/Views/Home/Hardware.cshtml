@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Hardware";
+}
+<h2>@ViewBag.Title</h2>
+
+<h3>Arduino</h3>
+
+<p>
+    
+    The project uses an arduino board with stacked shields for Wifi and motor driving.
+    An <a target="_blank" href="https://www.arduino.cc/en/Main/ArduinoWiFiShield">ArduinoWifiShield</a> is used for the Wifi connection.
+</p>
+
+<h4>Custom driver shield</h4>
+
+<p>
+    The shield uses three L293D Dual H-Bridges for driving two stepper motors for X-Y-movement and one regular electric motor for the pen.
+    It also has an input pin for reading the microswitches on the board that are used to reset the pen position.
+</p>
+
+<h3>Plotter</h3>
+
+<p>
+    The plotter is constructed from two salvaged stepper motors from a printer/scanner, and one DVD tray that is being used to move the pen up and down.
+</p>
+
+<p>
+    <a href="~/Content/img/arduino.jpg">
+        <img src="~/Content/img/arduino.jpg" style="max-width: 25%;" class="img-thumbnail" />
+    </a>
+    <a href="~/Content/img/plotter.jpg">
+        <img src="~/Content/img/plotter.jpg" style="max-width: 25%;" class="img-thumbnail" />
+    </a>
+</p>
