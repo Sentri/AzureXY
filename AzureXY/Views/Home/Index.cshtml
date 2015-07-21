@@ -6,28 +6,34 @@
     <h1>AzureXY</h1>
     <p class="lead">AzureXY lets you control your plotters, cutters, and engravers with a browser interface.</p>
     <p>
-        @Html.ActionLink("Board management", "Index", "Tables", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        @Html.ActionLink("Board management »", "Index", "Tables", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
     </p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Project information</h2>
+        <p>The plotter used for this project uses an Arduino board with a custom hardware shield for driving the plotter motors.</p>
+        <p>This project is made for the Microsoft Student Partner program.</p>
+        <p><a class="btn btn-default" target="_blank" href="https://msdn.microsoft.com/en-us/microsoftstudentpartners.aspx">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Hardware</h2>
+        <p>The Arduino board needs a Wifi capable shield and a shield capable of driving two stepper motors and a mechanism for enabling and disabling a pen or a laser.</p>
+        <p>The board used for this project uses an <a target="_blank" href="https://www.arduino.cc/en/Main/ArduinoWiFiShield">ArduinoWifiShield</a> and a custom driver shield.</p>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            @Html.ActionLink("Learn more »", "Hardware", "Home", new { area = "" }, new { @class = "btn btn-default" })
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Software</h2>
+        <p>
+            The arduino needs to run software capable of reading the XYB10 instructions.
+            You may find an example library <a target="_blank" href="https://github.com/Sentri/AzureXY/tree/master/Arduino">here</a>.
+        </p>
+        <p>
+            The code for this project is available on Github.
+        </p>
+        <p><a class="btn btn-default" target="_blank" href="https://github.com/Sentri/AzureXY/">Github repository &raquo;</a></p>
     </div>
 </div>
