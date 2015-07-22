@@ -82,11 +82,11 @@ namespace AzureXY.Controllers
             return View(vm);
         }
 
-        public ActionResult SearchImages(string query)
+        public ActionResult SearchImages(string query, string callback)
         {
             if (query != null && query.Length > 2)
             {
-                var searchResults = BingSearcher.ImageSearch(query);
+                var searchResults = BingSearcher.ImageSearch(query, callback);
                 return View(searchResults);
             }
             return View(new BingSearchViewModel());

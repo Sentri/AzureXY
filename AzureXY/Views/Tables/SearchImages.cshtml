@@ -2,13 +2,12 @@
 @{
     Layout = null;
 }
-
-@foreach (var result in Model.Results)
+@if (Model.Callback != null)
 {
-    <h3>
-        @result.ImageURL
-    </h3>
-    <p>
-        @result.ThumbnailURL
-    </p>
+    @Html.Raw(Model.JSONP)
 }
+else
+{
+    @Html.Raw(Model.JSON)
+}
+

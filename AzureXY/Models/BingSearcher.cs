@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web.Configuration;
+using Newtonsoft.Json;
 
 namespace AzureXY.Models
 {
     public class BingSearcher
     {
 
-        public static BingSearchViewModel ImageSearch(string query)
+        public static BingSearchViewModel ImageSearch(string query, string callback)
         {
             string accountKey = WebConfigurationManager.AppSettings["BingKey"];
             string rootUrl = "https://api.datamarket.azure.com/Bing/Search";
@@ -23,6 +24,10 @@ namespace AzureXY.Models
             var imageResults = imageQuery.Execute();
 
             var model = new BingSearchViewModel();
+            if (callback != null && callback.Length > 0)
+            {
+                model.Callback = callback;
+            }
             foreach (var result in imageResults)
             {
                 model.Results.Add(new BingSearchImageResult() {
@@ -41,9 +46,26 @@ namespace AzureXY.Models
         public BingSearchViewModel()
         {
             Results = new List<BingSearchImageResult>();
+            Callback = null;
         }
 
         public List<BingSearchImageResult> Results { get; set; }
+        public string Callback { get; set; }
+        public string JSON
+        {
+            get
+            {
+                return JsonConvert.SerializeObject(Results);
+            }
+        }
+        public string JSONP
+        {
+            get
+            {
+                var str = JsonConvert.SerializeObject(Results);
+                return Callback + "(" + str + ")";
+            }
+        }
 
     }
 
