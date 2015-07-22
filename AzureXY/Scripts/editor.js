@@ -275,7 +275,7 @@ Editor.prototype = {
         });
     },
     "searchCallback": function (data, status, o) {
-        var searchTarget = $("#bing-popup div.toolbox-popup-target");
+        var searchTarget = $("#bing-popup div.toolbox-popup-target").empty();
         for (var i in data) {
             var img = data[i];
             var div = $("<div>").addClass("col-md-2").append(
