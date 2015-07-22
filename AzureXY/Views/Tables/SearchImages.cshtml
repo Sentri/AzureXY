@@ -1,0 +1,14 @@
+﻿@model AzureXY.Models.BingSearchViewModel
+@{
+    Layout = null;
+}
+
+@foreach (var result in Model.Results)
+{
+    <h3>
+        @result.ImageURL
+    </h3>
+    <p>
+        @result.ThumbnailURL
+    </p>
+}

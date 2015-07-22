@@ -82,6 +82,16 @@ namespace AzureXY.Controllers
             return View(vm);
         }
 
+        public ActionResult SearchImages(string query)
+        {
+            if (query != null && query.Length > 2)
+            {
+                var searchResults = BingSearcher.ImageSearch(query);
+                return View(searchResults);
+            }
+            return View(new BingSearchViewModel());
+        }
+
         public async Task<ActionResult> Push(int? tableid, int? drawingid)
         {
             if (tableid == null || drawingid == null)
