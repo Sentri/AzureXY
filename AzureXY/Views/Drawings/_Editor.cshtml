@@ -5,7 +5,7 @@
         <button type="button" class="btn btn-default toolbox-button-draw" data-target="@(ViewData["container"])">Draw</button>
         <button type="button" class="btn btn-default toolbox-button-erase" data-target="@(ViewData["container"])">Erase</button>
     </div>
-    <button type="button" class="btn btn-default toolbox-button-image" data-target="@(ViewData["container"])">Background</button>
+    <a class="btn btn-default toolbox-button-image" href="#bing-popup" data-target="@(ViewData["container"])">Background</a>
 </div>
 <div class="col-md-10">
     <div class="toolbox-editor">
@@ -15,4 +15,26 @@
     </div>
     <br />
     <a class="btn btn-success toolbox-button-write" data-target="@(ViewData["container"])">Write instructions</a>
+</div>
+<div id="bing-popup" class="toolbox-popup white-popup mfp-hide">
+    <div class="row">
+        <div class="col-md-8">
+            <input type="text" class="toolbox-search" placeholder="Search Bing Images" />
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary toolbox-search-button">Search</button>
+        </div>
+    </div>
+    <hr />
+    <div class="row toolbox-popup-target">
+        <div class="col-md-12">
+            <p>
+                Enter an image search query above.
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div>
+        Powered by <a href="http://www.bing.com" target="_blank"><img src="~/Content/img/Bing_logo.jpg" /></a>
+    </div>
 </div>

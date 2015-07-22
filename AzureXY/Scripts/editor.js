@@ -68,6 +68,7 @@ function Editor(element) {
     this.image = null;
     this.locateButtons();
     this.registerButtons();
+    this.setupSearch();
     this.loadFromText();
     this.requestUpdate();
 }
@@ -85,7 +86,6 @@ Editor.prototype = {
         this.buttonErase.on("touchstart mousedown", this.actionErase.bind(this));
         this.buttonNewline.on("touchstart mousedown", this.actionNewline.bind(this));
         this.buttonWrite.on("touchstart mousedown", this.actionWrite.bind(this));
-        this.buttonImage.on("touchstart mousedown", this.actionImage.bind(this));
         this.canvas.on("touchend mouseup", this.actionTap.bind(this));
         this.canvas.on("touchstart", function (e) {
             this.lastStartEvent = e;
@@ -94,6 +94,10 @@ Editor.prototype = {
         this.canvas.on("touchmove", function (e) {
             this.lastMoveEvent = e;
         }.bind(this));
+        this.buttonImage.magnificPopup({
+            type:'inline',
+            midClick: true
+        });
     },
     "updateCanvas": function () {
         var ctx = this.canvas[0].getContext("2d");
@@ -242,9 +246,7 @@ Editor.prototype = {
         instructions += "E\r\n";
         target.val(instructions);
     },
-    "actionImage": function () {
-        var def = this.image == null ? "" : this.image.src;
-        var location = window.prompt("Please enter a URL for an image:", def);
+    "setImage": function (location) {
         if (location == "") {
             this.image = null;
         } else {
@@ -260,7 +262,35 @@ Editor.prototype = {
             this.lines = helperReadLines(text);
         };
     },
-    
+    "setupSearch": function () {
+        var searchButton = $("#bing-popup button.toolbox-search-button");
+        searchButton.click(this.searchBing.bind(this));
+    },
+    "searchBing": function () {
+        var searchQuery = $("#bing-popup input.toolbox-search").val();
+        $.getJSON("/Tables/SearchImages?query=" + encodeURIComponent(searchQuery))
+        .done(this.searchCallback.bind(this))
+        .fail(function (a, b, c) {
+            console.log("error", a, b, c);
+        });
+    },
+    "searchCallback": function (data, status, o) {
+        var searchTarget = $("#bing-popup div.toolbox-popup-target");
+        for (var i in data) {
+            var img = data[i];
+            var div = $("<div>").addClass("col-md-2").append(
+                $("<img>").attr("src", img.ThumbnailURL)
+                    .attr("data-uri", img.ImageURL)
+                    .click(this.clickImage.bind(this))
+            );
+            searchTarget.append(div);
+        }
+    },
+    "clickImage": function(e) {
+        var imageURL = e.target.getAttribute("data-uri");
+        this.setImage(imageURL);
+        $.magnificPopup.close();
+    },
 };
 
 function SVGCreator(element) {

@@ -46,4 +46,22 @@
             }
         }
     }
+    div.toolbox-popup {
+        background: #fff;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 6px;
+        input.toolbox-search {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: 34px;
+        }
+        div.toolbox-popup-target {
+            div img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
 }
