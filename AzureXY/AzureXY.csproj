@@ -43,6 +43,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -194,6 +196,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BingSearchContainer.cs" />
+    <Compile Include="Models\BingSearcher.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Drawing.cs" />
     <Compile Include="Models\IdentityModels.cs" />
