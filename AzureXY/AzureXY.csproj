@@ -214,6 +214,7 @@
       <DependentUpon>editor.css</DependentUpon>
     </Content>
     <Content Include="Content\img\arduino.jpg" />
+    <Content Include="Content\img\Bing_logo.jpg" />
     <Content Include="Content\img\Microsoft_logo.jpg" />
     <Content Include="Content\img\plotter.jpg" />
     <Content Include="Content\magnific-popup.css" />
