@@ -325,6 +325,29 @@ SVGCreator.prototype = {
     },
 };
 
+function SignalR() {
+    this.con = $.hubConnection();
+    this.hub = this.con.createHubProxy("moveShape");
+    console.log("hub initialized");
+
+    this.hub.on("shapeMoved", this.shapeMoved.bind(this));
+    this.hub.on("startDrawing", this.startDrawing.bind(this));
+    this.hub.on("stopDrawing", this.stopDrawing.bind(this));
+
+}
+
+SignalR.prototype = {
+    "shapeMoved": function (x, y) {
+        console.log("shape moved", x, y);
+    },
+    "startDrawing": function () {
+        console.log("start drawing");
+    },
+    "stopDrawing": function () {
+        console.log("stop drawing");
+    }
+}
+
 $(function () {
     $("canvas.toolbox-canvas").each(function (i, element) {
         var e = new Editor(element);
@@ -332,4 +355,5 @@ $(function () {
     $("div.toolbox-thumbnail").each(function (i, element) {
         var e = new SVGCreator(element);
     });
+    var sr = new SignalR();
 })
